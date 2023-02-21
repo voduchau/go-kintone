@@ -385,9 +385,9 @@ func (app *App) getRecords(fields []string, query string, totalCount bool) ([]*R
 		Query      string   `json:"query"`
 		TotalCount bool     `json:"totalCount"`
 	}
-
+  
 	data, _ := json.Marshal(request_body{app.AppId, fields, query, totalCount})
-
+  
 	req, err := app.newRequest("GET", "records", bytes.NewReader(data))
 	if err != nil {
 		return nil, "", err
@@ -401,7 +401,7 @@ func (app *App) getRecords(fields []string, query string, totalCount bool) ([]*R
 		return nil, "", err
 	}
 	recs, respTotalCount, err := DecodeRecordsWithTotalCount(body)
-
+  
 	if err != nil {
 		return nil, "", ErrInvalidResponse
 	}
@@ -455,7 +455,7 @@ func (app *App) GetAllRecords(fields []string) ([]*Record, error) {
 		if err != nil {
 			return nil, err
 		}
-		r, err := DecodeRecords(body)
+		r, _, err := DecodeRecords(body)
 		if err != nil {
 			return nil, ErrInvalidResponse
 		}
