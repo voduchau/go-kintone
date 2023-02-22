@@ -321,6 +321,7 @@ func decodeRecordData(data recordData) (*Record, error) {
 	return rec, nil
 }
 
+// This is test 111111
 // DecodeRecords decodes JSON response for multi-get API.
 func DecodeRecords(b []byte) ([]*Record, error) {
 	var t struct {
